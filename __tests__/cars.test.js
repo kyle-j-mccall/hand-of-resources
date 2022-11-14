@@ -15,7 +15,7 @@ describe('countries route', () => {
     expect(car1).toHaveProperty('model', 'Rio');
     expect(car1).toHaveProperty('year', 2017);
   });
-  it('/cars/:id should return a dog detail', async () => {
+  it('/cars/:id should return a car detail', async () => {
     const resp = await request(app).get('/cars/2');
     const toyota = {
       id: '2',
@@ -24,6 +24,19 @@ describe('countries route', () => {
       year: 2022,
     };
     expect(resp.body).toEqual(toyota);
+  });
+  it('POST /cars should create a new car in the database', async () => {
+    const newCar = {
+      make: 'Fluffy',
+      model: 'black',
+      year: 2018,
+    };
+    const resp = await request(app).post('/cars').send(newCar);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newCar,
+    });
   });
   afterAll(() => {
     pool.end();

@@ -26,7 +26,7 @@ describe('dogs route', () => {
     expect(resp.body).toEqual(jason);
   });
 
-  it.skip('POST /dogs should create a new soda in the database', async () => {
+  it.skip('POST /dogs should create a new dog in the database', async () => {
     const newDog = {
       name: 'Fluffy',
       color: 'black',
