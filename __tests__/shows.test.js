@@ -24,6 +24,19 @@ describe('shows route', () => {
     };
     expect(resp.body).toEqual(theOffice);
   });
+  it('POST /shows should create a new show in the database', async () => {
+    const newShow = {
+      title: 'Rings of Power',
+      seasons: 1,
+      genre: 'Fantasy',
+    };
+    const resp = await request(app).post('/shows').send(newShow);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newShow,
+    });
+  });
 
   afterAll(() => {
     pool.end();
