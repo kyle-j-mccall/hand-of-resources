@@ -37,6 +37,14 @@ describe('books route', () => {
       ...newBook,
     });
   });
+  it('PUT /books/:id should update an existing dog', async () => {
+    const resp = await request(app).put('/books/2').send({
+      title: 'wonderful book',
+    });
+
+    expect(resp.status).toBe(200);
+    expect(resp.body.title).toBe('wonderful book');
+  });
   afterAll(() => {
     pool.end();
   });
