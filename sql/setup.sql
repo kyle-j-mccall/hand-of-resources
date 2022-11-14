@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS dogs;
 DROP TABLE IF EXISTS countries;
 DROP TABLE IF EXISTS cars;
+DROP TABLE IF EXISTS books2;
 
 
 CREATE TABLE dogs (
@@ -24,6 +25,13 @@ CREATE TABLE cars (
   make VARCHAR NOT NULL,
   model VARCHAR NOT NULL,
   year INT
+);
+
+CREATE TABLE books2 (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title VARCHAR,
+  author VARCHAR,
+  released DATE 
 );
 
 INSERT INTO dogs (
@@ -71,3 +79,16 @@ VALUES
   ('Subaru', 'Impreza', 2012),
   ('Honda', 'Civic', 2020),
   ('Toyota', 'Camry', 2010);
+
+INSERT INTO books2 (
+  title,
+  author,
+  released
+)
+
+VALUES 
+  ('Business-focused', 'Riki Jessopp', '8/9/2022'),
+  ('Expanded', 'Alvan Tesyro', '10/25/2022'),
+  ('Stand-alone', 'Rolfe Kob', '4/10/2022'),
+  ('Phased', 'Sissy Bonn', '5/8/2022'),
+  ('Optional', 'Rayner Alebrooke', '10/18/2022')
