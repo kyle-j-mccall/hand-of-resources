@@ -15,6 +15,16 @@ describe('countries route', () => {
     expect(car1).toHaveProperty('model', 'Rio');
     expect(car1).toHaveProperty('year', 2017);
   });
+  it('/cars/:id should return a dog detail', async () => {
+    const resp = await request(app).get('/cars/2');
+    const toyota = {
+      id: '2',
+      make: 'Toyota',
+      model: 'Tacoma',
+      year: 2022,
+    };
+    expect(resp.body).toEqual(toyota);
+  });
   afterAll(() => {
     pool.end();
   });
