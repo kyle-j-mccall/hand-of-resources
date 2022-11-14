@@ -37,6 +37,14 @@ describe('shows route', () => {
       ...newShow,
     });
   });
+  it('PUT /shows/:id should update an existing show', async () => {
+    const resp = await request(app).put('/shows/2').send({
+      seasons: 5,
+    });
+
+    expect(resp.status).toBe(200);
+    expect(resp.body.seasons).toBe(5);
+  });
 
   afterAll(() => {
     pool.end();
