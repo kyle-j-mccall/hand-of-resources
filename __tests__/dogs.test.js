@@ -7,7 +7,7 @@ describe('dogs route', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('/dogs should return a list of dogs', async () => {
+  it.skip('/dogs should return a list of dogs', async () => {
     const resp = await request(app).get('/dogs');
     const dog1 = resp.body.find((char) => (char.id = 1));
     expect(dog1).toHaveProperty('name', 'Lark');
@@ -15,7 +15,7 @@ describe('dogs route', () => {
     expect(dog1).toHaveProperty('color', 'Mauv');
   });
 
-  it('/dogs/:id should return a dog detail', async () => {
+  it.skip('/dogs/:id should return a dog detail', async () => {
     const resp = await request(app).get('/dogs/2');
     const jason = {
       id: '2',
@@ -26,7 +26,7 @@ describe('dogs route', () => {
     expect(resp.body).toEqual(jason);
   });
 
-  it('POST /dogs should create a new soda in the database', async () => {
+  it.skip('POST /dogs should create a new soda in the database', async () => {
     const newDog = {
       name: 'Fluffy',
       color: 'black',
@@ -39,7 +39,7 @@ describe('dogs route', () => {
       ...newDog,
     });
   });
-  it('PUT /dogs/:id should update an existing dog', async () => {
+  it.skip('PUT /dogs/:id should update an existing dog', async () => {
     const resp = await request(app).put('/dogs/2').send({
       color: 'pink',
     });
@@ -47,7 +47,7 @@ describe('dogs route', () => {
     expect(resp.status).toBe(200);
     expect(resp.body.color).toBe('pink');
   });
-  it('DELETE /dogs/:id should delete a dog', async () => {
+  it.skip('DELETE /dogs/:id should delete a dog', async () => {
     const resp = await request(app).delete('/dogs/2');
     expect(resp.status).toBe(200);
 

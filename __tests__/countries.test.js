@@ -7,7 +7,7 @@ describe('countries route', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it.skip('/countries should return a list of countries', async () => {
+  it('/countries should return a list of countries', async () => {
     const res = await request(app).get('/countries');
     const country1 = res.body.find((char) => (char.id = 1));
     expect(res.status).toBe(200);
@@ -16,8 +16,8 @@ describe('countries route', () => {
     expect(country1).toHaveProperty('population', 919683);
   });
 
-  it.skip('/countries/:id should return country detail', async () => {
-    const res = await request(app).get('/countries/3');
+  it('/countries/:id should return country detail', async () => {
+    const resp = await request(app).get('/countries/3');
     const russia = {
       id: '3',
       name: 'Russia',
@@ -25,9 +25,21 @@ describe('countries route', () => {
       population: 103882,
     };
 
-    expect(res.body).toEqual(russia);
+    expect(resp.body).toEqual(russia);
   });
-
+  it('POST /countries should return a new country in the database', async () => {
+    const newCountry = {
+      name: 'U.S.A',
+      population: 330000000,
+      language: 'English',
+    };
+    const resp = await request(app).post('/countries').send(newCountry);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newCountry,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
