@@ -43,9 +43,16 @@ describe('dogs route', () => {
     const resp = await request(app).put('/dogs/2').send({
       color: 'pink',
     });
-    console.log(resp.body);
+
     expect(resp.status).toBe(200);
     expect(resp.body.color).toBe('pink');
+  });
+  it('DELETE /dogs/:id should delete a dog', async () => {
+    const resp = await request(app).delete('/dogs/2');
+    expect(resp.status).toBe(200);
+
+    const dogResp = await request(app).get('/dogs/2');
+    expect(dogResp.status).toBe(404);
   });
   afterAll(() => {
     pool.end();
