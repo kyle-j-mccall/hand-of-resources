@@ -40,6 +40,14 @@ describe('countries route', () => {
       ...newCountry,
     });
   });
+  it('PUT /countries/:id should update existing country', async () => {
+    const resp = await request(app).put('/countries/2').send({
+      language: 'Elvish',
+    });
+    console.log(resp.body);
+    expect(resp.status).toBe(200);
+    expect(resp.body.language).toBe('Elvish');
+  });
   afterAll(() => {
     pool.end();
   });
