@@ -45,7 +45,13 @@ describe('shows route', () => {
     expect(resp.status).toBe(200);
     expect(resp.body.seasons).toBe(5);
   });
+  it('DELETE /shows/:id should delete a show', async () => {
+    const resp = await request(app).delete('/shows/2');
+    expect(resp.status).toBe(200);
 
+    const bookResp = await request(app).get('/shows/2');
+    expect(bookResp.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
