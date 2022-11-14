@@ -7,7 +7,7 @@ describe('cars route', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it.skip('/cars should return a list of cars', async () => {
+  it('/cars should return a list of cars', async () => {
     const resp = await request(app).get('/cars');
     const car1 = resp.body.find((char) => (char.id = 1));
     expect(resp.status).toBe(200);
@@ -15,7 +15,7 @@ describe('cars route', () => {
     expect(car1).toHaveProperty('model', 'Rio');
     expect(car1).toHaveProperty('year', 2017);
   });
-  it.skip('/cars/:id should return a car detail', async () => {
+  it('/cars/:id should return a car detail', async () => {
     const resp = await request(app).get('/cars/2');
     const toyota = {
       id: '2',
@@ -25,7 +25,7 @@ describe('cars route', () => {
     };
     expect(resp.body).toEqual(toyota);
   });
-  it.skip('POST /cars should create a new car in the database', async () => {
+  it('POST /cars should create a new car in the database', async () => {
     const newCar = {
       make: 'Fluffy',
       model: 'black',
@@ -38,7 +38,7 @@ describe('cars route', () => {
       ...newCar,
     });
   });
-  it.skip('PUT /cars/:id should update an existing car', async () => {
+  it('PUT /cars/:id should update an existing car', async () => {
     const resp = await request(app).put('/cars/2').send({
       model: 'Supra',
     });
@@ -46,7 +46,7 @@ describe('cars route', () => {
     expect(resp.status).toBe(200);
     expect(resp.body.model).toBe('Supra');
   });
-  it.skip('DELETE /cars/:id should delete a car', async () => {
+  it('DELETE /cars/:id should delete a car', async () => {
     const resp = await request(app).delete('/cars/2');
     expect(resp.status).toBe(200);
 
