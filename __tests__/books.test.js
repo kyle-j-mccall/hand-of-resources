@@ -14,7 +14,7 @@ describe('books route', () => {
     expect(dog1).toHaveProperty('author', 'Riki Jessopp');
     expect(dog1).toHaveProperty('released', expect.any(String));
   });
-  it('/books/:id should return a dog detail', async () => {
+  it('/books/:id should return a book detail', async () => {
     const resp = await request(app).get('/books/2');
     const expanded = {
       id: '2',

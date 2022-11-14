@@ -14,6 +14,16 @@ describe('shows route', () => {
     expect(dog1).toHaveProperty('seasons', 7);
     expect(dog1).toHaveProperty('genre', 'Drama');
   });
+  it('/shows/:id should return a show detail', async () => {
+    const resp = await request(app).get('/shows/2');
+    const theOffice = {
+      id: '2',
+      title: 'The Office',
+      seasons: 9,
+      genre: 'Comedy',
+    };
+    expect(resp.body).toEqual(theOffice);
+  });
 
   afterAll(() => {
     pool.end();
