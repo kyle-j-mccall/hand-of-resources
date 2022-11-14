@@ -2,6 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP TABLE IF EXISTS dogs;
 DROP TABLE IF EXISTS countries;
+DROP TABLE IF EXISTS cars;
 
 
 CREATE TABLE dogs (
@@ -16,6 +17,13 @@ CREATE TABLE countries (
   name VARCHAR NOT NULL,
   language VARCHAR NOT NULL,
   population INT NOT NULL
+);
+
+CREATE TABLE cars (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  make VARCHAR NOT NULL,
+  model VARCHAR NOT NULL,
+  year INT
 );
 
 INSERT INTO dogs (
@@ -50,3 +58,16 @@ VALUES
   ('Indonesia', 880840, 'Croatian'),
   ('Indonesia', 341609, 'Montenegrin'),
   ('South Africa', 503223, 'Assamese');
+
+INSERT INTO cars (
+  make, 
+  model, 
+  year
+)
+
+VALUES 
+  ('Kia', 'Rio', 2017),
+  ('Toyota', 'Tacoma', 2022),
+  ('Subaru', 'Impreza', 2012),
+  ('Honda', 'Civic', 2020),
+  ('Toyota', 'Camry', 2010);
