@@ -37,7 +37,7 @@ describe('books route', () => {
       ...newBook,
     });
   });
-  it('PUT /books/:id should update an existing dog', async () => {
+  it('PUT /books/:id should update an existing book', async () => {
     const resp = await request(app).put('/books/2').send({
       title: 'wonderful book',
     });

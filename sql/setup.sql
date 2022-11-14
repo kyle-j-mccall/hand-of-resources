@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS dogs;
 DROP TABLE IF EXISTS countries;
 DROP TABLE IF EXISTS cars;
 DROP TABLE IF EXISTS books2;
+DROP TABLE IF EXISTS shows;
 
 
 CREATE TABLE dogs (
@@ -32,6 +33,12 @@ CREATE TABLE books2 (
   title VARCHAR,
   author VARCHAR,
   released DATE 
+);
+CREATE TABLE shows (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title VARCHAR,
+  seasons INT,
+  genre VARCHAR 
 );
 
 INSERT INTO dogs (
@@ -91,4 +98,17 @@ VALUES
   ('Expanded', 'Alvan Tesyro', '10/25/2022'),
   ('Stand-alone', 'Rolfe Kob', '4/10/2022'),
   ('Phased', 'Sissy Bonn', '5/8/2022'),
-  ('Optional', 'Rayner Alebrooke', '10/18/2022')
+  ('Optional', 'Rayner Alebrooke', '10/18/2022');
+
+INSERT INTO shows (
+  title,
+  seasons,
+  genre
+)
+
+VALUES 
+  ('Breaking Bad', 7, 'Drama'),
+  ('The Office', 9, 'Comedy'),
+  ('Devs', 1, 'Psychological Thriller'),
+  ('Game Of Thrones', 7, 'Fantasy'),
+  ('Queens Gambit', 1, 'Drama');
