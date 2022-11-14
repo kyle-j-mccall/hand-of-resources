@@ -28,7 +28,7 @@ describe('books route', () => {
     const newBook = {
       title: 'Harry Potter',
       author: 'J.K Rowling',
-      released: '1995-07-08T07:00:00.000Z',
+      released: null,
     };
     const resp = await request(app).post('/books').send(newBook);
     expect(resp.status).toBe(200);
