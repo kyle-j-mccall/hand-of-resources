@@ -24,7 +24,19 @@ describe('books route', () => {
     };
     expect(resp.body).toEqual(expanded);
   });
-
+  it('POST /books should create a new book in the database', async () => {
+    const newBook = {
+      title: 'Harry Potter',
+      author: 'J.K Rowling',
+      released: '1995-07-08T07:00:00.000Z',
+    };
+    const resp = await request(app).post('/books').send(newBook);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newBook,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
