@@ -14,6 +14,17 @@ describe('dogs route', () => {
     expect(dog1).toHaveProperty('age', 8);
     expect(dog1).toHaveProperty('color', 'Mauv');
   });
+
+  it('/dogs/:id should return a dog detail', async () => {
+    const res = await request(app).get('/dogs/2');
+    const jason = {
+      id: 2,
+      name: 'Jason',
+      color: 'Purple',
+      age: 5,
+    };
+    expect(res.body).toEqual(jason);
+  });
   afterAll(() => {
     pool.end();
   });
