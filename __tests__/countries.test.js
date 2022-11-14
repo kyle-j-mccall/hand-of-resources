@@ -7,16 +7,16 @@ describe('countries route', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('/countries should return a list of countries', async () => {
+  it.skip('/countries should return a list of countries', async () => {
     const res = await request(app).get('/countries');
     const country1 = res.body.find((char) => (char.id = 1));
-
+    expect(res.status).toBe(200);
     expect(country1).toHaveProperty('name', 'Indonesia');
     expect(country1).toHaveProperty('language', 'Albanian');
     expect(country1).toHaveProperty('population', 919683);
   });
 
-  it('/countries/:id should return country detail', async () => {
+  it.skip('/countries/:id should return country detail', async () => {
     const res = await request(app).get('/countries/3');
     const russia = {
       id: '3',

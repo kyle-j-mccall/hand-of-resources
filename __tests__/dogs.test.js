@@ -25,6 +25,20 @@ describe('dogs route', () => {
     };
     expect(res.body).toEqual(jason);
   });
+
+  it('POST /dogs should create a new soda in the database', async () => {
+    const newDog = {
+      name: 'Fluffy',
+      color: 'black',
+      age: 2,
+    };
+    const resp = await request(app).post('/dogs').send(newDog);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newDog,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
