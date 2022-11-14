@@ -7,23 +7,23 @@ describe('dogs route', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it.skip('/dogs should return a list of dogs', async () => {
-    const res = await request(app).get('/dogs');
-    const dog1 = res.body.find((char) => (char.id = 1));
+  it('/dogs should return a list of dogs', async () => {
+    const resp = await request(app).get('/dogs');
+    const dog1 = resp.body.find((char) => (char.id = 1));
     expect(dog1).toHaveProperty('name', 'Lark');
     expect(dog1).toHaveProperty('age', 8);
     expect(dog1).toHaveProperty('color', 'Mauv');
   });
 
-  it.skip('/dogs/:id should return a dog detail', async () => {
-    const res = await request(app).get('/dogs/2');
+  it('/dogs/:id should return a dog detail', async () => {
+    const resp = await request(app).get('/dogs/2');
     const jason = {
       id: '2',
       name: 'Jason',
       color: 'Purple',
       age: 5,
     };
-    expect(res.body).toEqual(jason);
+    expect(resp.body).toEqual(jason);
   });
 
   it('POST /dogs should create a new soda in the database', async () => {
@@ -38,6 +38,14 @@ describe('dogs route', () => {
       id: expect.any(String),
       ...newDog,
     });
+  });
+  it('PUT /dogs/:id should update an existing dog', async () => {
+    const resp = await request(app).put('/dogs/2').send({
+      color: 'pink',
+    });
+    console.log(resp.body);
+    expect(resp.status).toBe(200);
+    expect(resp.body.color).toBe('pink');
   });
   afterAll(() => {
     pool.end();
