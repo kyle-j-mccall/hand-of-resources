@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe('countries route', () => {
+describe('cars route', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -37,6 +37,14 @@ describe('countries route', () => {
       id: expect.any(String),
       ...newCar,
     });
+  });
+  it('PUT /cars/:id should update an existing car', async () => {
+    const resp = await request(app).put('/cars/2').send({
+      model: 'Supra',
+    });
+
+    expect(resp.status).toBe(200);
+    expect(resp.body.model).toBe('Supra');
   });
   afterAll(() => {
     pool.end();
