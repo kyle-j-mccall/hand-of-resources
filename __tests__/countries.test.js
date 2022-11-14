@@ -15,6 +15,19 @@ describe('countries route', () => {
     expect(country1).toHaveProperty('language', 'Albanian');
     expect(country1).toHaveProperty('population', 919683);
   });
+
+  it('/countries/:id should return country detail', async () => {
+    const res = await request(app).get('/countries/3');
+    const russia = {
+      id: '3',
+      name: 'Russia',
+      language: 'Bengali',
+      population: 103882,
+    };
+
+    expect(res.body).toEqual(russia);
+  });
+
   afterAll(() => {
     pool.end();
   });
