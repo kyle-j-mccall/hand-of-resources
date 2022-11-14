@@ -52,7 +52,7 @@ describe('dogs route', () => {
     expect(resp.status).toBe(200);
 
     const dogResp = await request(app).get('/dogs/2');
-    expect(dogResp.status).toBe(404);
+    expect(dogResp.body).toBe(404);
   });
   afterAll(() => {
     pool.end();

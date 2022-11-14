@@ -44,9 +44,16 @@ describe('countries route', () => {
     const resp = await request(app).put('/countries/2').send({
       language: 'Elvish',
     });
-    console.log(resp.body);
     expect(resp.status).toBe(200);
     expect(resp.body.language).toBe('Elvish');
+  });
+
+  it('DELETE /countries/:id should delete a country', async () => {
+    const resp = await request(app).delete('/countries/2');
+    expect(resp.status).toBe(200);
+
+    const countryResp = await request(app).get('/countries/2');
+    expect(countryResp.body).toBe(null);
   });
   afterAll(() => {
     pool.end();
