@@ -7,7 +7,7 @@ describe('countries route', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('/countries should return a list of countries', async () => {
+  it.skip('/countries should return a list of countries', async () => {
     const res = await request(app).get('/countries');
     const country1 = res.body.find((char) => (char.id = 1));
     expect(res.status).toBe(200);
@@ -16,7 +16,7 @@ describe('countries route', () => {
     expect(country1).toHaveProperty('population', 919683);
   });
 
-  it('/countries/:id should return country detail', async () => {
+  it.skip('/countries/:id should return country detail', async () => {
     const resp = await request(app).get('/countries/3');
     const russia = {
       id: '3',
@@ -27,7 +27,7 @@ describe('countries route', () => {
 
     expect(resp.body).toEqual(russia);
   });
-  it('POST /countries should return a new country in the database', async () => {
+  it.skip('POST /countries should return a new country in the database', async () => {
     const newCountry = {
       name: 'U.S.A',
       population: 330000000,
@@ -40,7 +40,7 @@ describe('countries route', () => {
       ...newCountry,
     });
   });
-  it('PUT /countries/:id should update existing country', async () => {
+  it.skip('PUT /countries/:id should update existing country', async () => {
     const resp = await request(app).put('/countries/2').send({
       language: 'Elvish',
     });
@@ -48,7 +48,7 @@ describe('countries route', () => {
     expect(resp.body.language).toBe('Elvish');
   });
 
-  it('DELETE /countries/:id should delete a country', async () => {
+  it.skip('DELETE /countries/:id should delete a country', async () => {
     const resp = await request(app).delete('/countries/2');
     expect(resp.status).toBe(200);
 
